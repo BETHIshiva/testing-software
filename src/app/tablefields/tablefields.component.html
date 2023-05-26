@@ -1,0 +1,40 @@
+<div>
+    <div>
+        <mat-toolbar color="primary">
+            <img width="100px" height="55px" src="https://media.licdn.com/dms/image/C560BAQE9V7vr9DeXQw/company-logo_200_200/0/1519911954826?e=2147483647&v=beta&t=dgzrRotfO3SXu7_oBAspp2hk87NRkx9Sy50JgkbsKjg">
+            <h5 style="padding-left:35%;">TEST BENCH SOFTWARE</h5>
+        </mat-toolbar>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="row">
+    <div class="col-2">
+        <h1>Tables :</h1>
+    </div>
+    <div class="col-3">
+        <ejs-dropdownlist #dropfields [dataSource]='datasource' cssClass="e-outline" placeholder="dropdown" floatLableType="Always" (change)="selectHandler($event.value)" [fields]="fileds"></ejs-dropdownlist>
+
+    </div>
+    <!-- <div class="col-3">
+        <div class="row pt-2" style="align-items: center;">
+
+            <button class="btn btn-primary btn-sm" (click)="onSelectedDrop()">View</button>
+        </div>
+    </div> -->
+</div>
+<diV>
+    <ejs-grid [dataSource]='datasource1' #GRID [editSettings]='editSettings' [toolbar]='toolbar' (actionComplete)="actionComplete($event)" height='273px'>
+        <e-columns>
+            <e-column *ngFor="let item of headerD1" field={{item.Column_name}} headerText={{item.Column_name}} editType='textbox' width="150"></e-column>
+
+        </e-columns>
+    </ejs-grid>
+
+</diV>

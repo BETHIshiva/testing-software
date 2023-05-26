@@ -1,0 +1,290 @@
+<div>
+    <div>
+        <!-- <header class="site-header">
+          <div class="site-identity">
+              <a href="#"><img src="https://media.licdn.com/dms/image/C560BAQE9V7vr9DeXQw/company-logo_200_200/0/1519911954826?e=2147483647&v=beta&t=dgzrRotfO3SXu7_oBAspp2hk87NRkx9Sy50JgkbsKjg" alt="Site Name" /></a>
+
+              <h1 style="text-align: center;">TEST BENCH SOFTWARE</h1>
+
+
+
+          </div>
+      </header> -->
+        <mat-toolbar color="primary">
+
+            <img width="100px" height="55px" src="https://media.licdn.com/dms/image/C560BAQE9V7vr9DeXQw/company-logo_200_200/0/1519911954826?e=2147483647&v=beta&t=dgzrRotfO3SXu7_oBAspp2hk87NRkx9Sy50JgkbsKjg">
+            <h5 style="padding-left:35%;">TEST BENCH SOFTWARE</h5>
+
+
+
+        </mat-toolbar>
+    </div>
+</div>
+<div>
+    <mat-card>
+        <div class="row">
+            <div class="col-5">
+                <div class="row pt-2" style="align-items: center;">
+                    <div class="col-3">
+                        <h3 style="    width: max-content;
+                  height: fit-content;
+                  margin: 0;">PRODUCT TYPE :</h3>
+
+                    </div>
+                    <div class="col-7">
+                        <ejs-dropdownlist #dropProduct [dataSource]='datasource' cssClass="e-outline" placeholder="dropdown" floatLableType="Always" [fields]="productFields"></ejs-dropdownlist>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="row pt-2" style="align-items: center;">
+                    <div class="col-3">
+                        <h3 style="    width: max-content;
+                    height: fit-content;
+                    margin: 0;">TEST BENCH :</h3>
+
+                    </div>
+                    <div class="col-7">
+                        <ejs-dropdownlist cssClass="e-outline" placeholder="dropdown" floatLableType="Always"></ejs-dropdownlist>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row pt-2" style="align-items: center;">
+
+                    <button class="btn btn-primary btn-sm" (click)="OnSelectComp()">START TEST</button>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </mat-card>
+    <mat-card>
+        <mat-card *ngIf="isProduct==true">
+            <div class="row backgrounds">
+                <div class="col-lg-4 pb-2" *ngFor="let data of startArray">
+                    <div *ngIf="data.component_name=='Combobox'">
+                        <div class="row">
+                            <div class="col-4">
+                                <h3>{{data.view_name}}</h3>
+                            </div>
+                            <div class="col-7">
+                                <ejs-dropdownlist [id]='data.name' #dropdown cssClass="e-outline" placeholder="dropdown" floatLableType="Always" [dataSource]='data?.mastertable' [fields]="fields"></ejs-dropdownlist>
+                                <div *ngIf="demoform.get('dropdown')?.invalid  && demoform.get('dropdown')?.touched && data.ismandatory ==1" class="text-danger">
+                                    <small *ngIf="demoform.get('dropdown')?.errors?.['required']">select the dropdown</small>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div *ngIf="data.component_name=='Textbox'">
+                        <div class="row">
+                            <div class="col-4">
+                                <h3>{{data.view_name}}</h3>
+                            </div>
+                            <div class="col-7">
+                                <!-- *ngIf="data.ismandatory==1 disabled" -->
+                                <!-- [(ngModel)]="value" -->
+                                <ejs-textbox [readonly]="data.isdisable==1?true:false" #textbox name="text_input" cssClass="e-outline" #inputValue placeholder="textbox" floatLableType="Always" class="e-input" type="text"></ejs-textbox>
+                                <div *ngIf="demoform.get('textbox')?.invalid && demoform.get('textbox')?.touched && data.ismandatory ==1" class="text-danger">
+                                    <small *ngIf="demoform.get('textbox')?.errors?.['required']">select the textbox</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="data.component_name=='NumericTextbox'">
+                        <div class="row">
+                            <div class="col-4">
+                                <h3>{{data.view_name}}</h3>
+                            </div>
+                            <div class="col-7">
+
+
+                                <!-- <ejs-numerictextbox value='10'></ejs-numerictextbox> -->
+                                <ejs-textbox [readonly]="data.isdisable==1?true:false" #numeric_Textbox name="text_input" cssClass="e-outline" #inputValue placeholder="NumericTextbox" floatLableType="Always" class="e-input" type="Number"></ejs-textbox>
+                                <div *ngIf="demoform.get('NumericTextbox')?.invalid && demoform.get('NumericTextbox')?.touched && data.ismandatory ==1" class="text-danger">
+                                    <small *ngIf="demoform.get('NumericTextbox')?.errors?.['required']">select the textbox</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="data.component_name=='Button'">
+                        <div class="row">
+
+                            <div class="col-4">
+
+                            </div>
+                            <div class="col-8">
+                                <button class="btn btn-primary" style="width : 85%;" (click)="onAdd1(data.view_name,data.id)">{{data.view_name}}</button>
+                            </div>
+                        </div>
+
+                        <!-- </div>
+                      </div> -->
+                    </div>
+
+                    <div>
+                        <!-- <div class="row">
+                  <button>Button</button>
+                  <div class="col-4">
+                      <h1>Texts..:</h1>
+                  </div>
+              </div> -->
+                    </div>
+
+                </div>
+            </div>
+        </mat-card>
+    </mat-card>
+</div>
+<p></p>
+
+<div class="vertical-center">
+    <button (click)="onShow()" class="btn btn-primary">Save</button>
+    <!-- <div>{{arr | json}}</div> -->
+    <div *ngFor="let j of arr">
+        <div *ngIf="j.component_name=='Combobox'">
+            <div> {{j.name}} is {{j.dropText}}</div>
+        </div>
+        <div *ngIf="j.component_name=='Textbox'">
+            <div> {{j.name}} is {{j.value}}</div>
+        </div>
+        <div *ngIf="j.component_name=='NumericTextbox'">
+            <div> {{j.name}} is {{j.value}}</div>
+
+        </div>
+
+    </div>
+    <!-- <div *ngFor="let i of  finalDrop">
+              <div>Dropdown value is {{i}}</div>
+          </div> -->
+
+</div>
+
+
+
+
+<!-- <mat-card>
+              <mat-card-title>The slected Values</mat-card-title>
+
+              <mat-card-content>
+                  <ejs-grid [dataSource]='displayArray'>
+                      <e-columns *ngFor="let x of displayArray">
+
+                          <e-column field='rstdt.date' headerText='Date' textAlign='left' width=180 format="dd-MMM-yyyy"></e-column>
+                          <e-column field='id' headerText='Id' width=90></e-column>
+                          <e-column field='param1' headerText='Dropdown1' width=120></e-column>
+                          <e-column field='param2' headerText='Dropdown2' width=120></e-column>
+                          <e-column field='param3' headerText='Textbox1' width=120></e-column>
+                          <e-column field='param4' headerText='Textbox2' width=120></e-column>
+                          <e-column field='param5' headerText='Textbox3' width=120></e-column>
+                          <e-column field='param6' headerText='Textbox4' width=120></e-column>
+                          <e-column field='param7' headerText='Dropdown3' width=120></e-column>
+
+                          <e-column field='param10' headerText='Textbox5' width=120></e-column>
+                          <e-column field='param11' headerText='Textbox6' width=120></e-column>
+                          <e-column field='param12' headerText='Textbox7' width=120></e-column>
+
+                          <e-column field='param14' headerText='Textbox8' width=120></e-column>
+                          <e-column field='param15' headerText='Textbox9' width=120></e-column>
+                          <e-column field='param16' headerText='Textbox10' width=120></e-column>
+                      </e-columns>
+                  </ejs-grid>
+              </mat-card-content>
+
+          </mat-card> -->
+
+
+
+<!--
+          <div style="text-align: center;" class="backgrounds">
+              <div>
+                  <button (click)="adduser()" class="btn btn-primary  btn-sm dbutton"> next </button>
+                  <p></p>
+                  <form [formGroup]="userForm">
+                  </form>
+              </div>
+              <form>
+                  <mat-card *ngIf="values==true">
+                      <div class="row backgrounds">
+                          <div class="col-lg-8 pb-2" *ngFor="let data of dynamicData">
+                              <div *ngIf="data.component_name=='Combobox'">
+                                  <div class="row">
+                                      <div class="col-4">
+                                          <h3>{{data.name}}:</h3>
+                                      </div>
+                                      <div class="col-8">
+                                          <ejs-dropdownlist [id]='data.name' #dropdown cssClass="e-outline" placeholder="dropdown" floatLableType="Always" [dataSource]='data?.mastertable' [fields]="fields"></ejs-dropdownlist>
+                                          <div *ngIf="demoform.get('dropdown')?.invalid  && demoform.get('dropdown')?.touched && data.ismandatory ==1" class="text-danger">
+                                              <small *ngIf="demoform.get('dropdown')?.errors?.['required']">select the dropdown</small>
+                                          </div>
+                                      </div>
+
+                                  </div>
+                              </div>
+                              <div *ngIf="data.component_name=='Textbox'">
+                                  <div class="row">
+                                      <div class="col-4">
+                                          <h3>{{data.name}}:</h3>
+                                      </div>
+                                      <div class="col-8">
+
+                                          <ejs-textbox [readonly]="data.isdisable==1?true:false" #textbox name="text_input" cssClass="e-outline" #inputValue placeholder="textbox" floatLableType="Always" class="e-input" type="text"></ejs-textbox>
+                                          <div *ngIf="demoform.get('textbox')?.invalid && demoform.get('textbox')?.touched && data.ismandatory ==1" class="text-danger">
+                                              <small *ngIf="demoform.get('textbox')?.errors?.['required']">select the textbox</small>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+
+                              </div>
+                              <div *ngIf="data.component_name=='Button'">
+                                  <div class="row">
+                                      <button class="btn btn-primary  btn-sm dbutton" (click)="onAdd1(data.name,data.id)">{{data.name}}</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </mat-card>
+              </form>
+              <p></p>
+              <div>
+                  <button (click)="onShow()" class="button-79">Show</button>
+              </div>
+          </div> -->
+<!-- <div>
+              <mat-card>
+                  <mat-card-title>The slected Values</mat-card-title>
+
+                  <mat-card-content>
+                      <ejs-grid [dataSource]='displayArray'>
+                          <e-columns *ngFor="let x of displayArray">
+
+                              <e-column field='rstdt.date' headerText='Date' textAlign='left' width=180 format="dd-MMM-yyyy"></e-column>
+                              <e-column field='id' headerText='Id' width=90></e-column>
+                              <e-column field='param1' headerText='Dropdown1' width=120></e-column>
+                              <e-column field='param2' headerText='Dropdown2' width=120></e-column>
+                              <e-column field='param3' headerText='Textbox1' width=120></e-column>
+                              <e-column field='param4' headerText='Textbox2' width=120></e-column>
+                              <e-column field='param5' headerText='Textbox3' width=120></e-column>
+                              <e-column field='param6' headerText='Textbox4' width=120></e-column>
+                              <e-column field='param7' headerText='Dropdown3' width=120></e-column>
+
+                              <e-column field='param10' headerText='Textbox5' width=120></e-column>
+                              <e-column field='param11' headerText='Textbox6' width=120></e-column>
+                              <e-column field='param12' headerText='Textbox7' width=120></e-column>
+
+                              <e-column field='param14' headerText='Textbox8' width=120></e-column>
+                              <e-column field='param15' headerText='Textbox9' width=120></e-column>
+                              <e-column field='param16' headerText='Textbox10' width=120></e-column>
+                          </e-columns>
+                      </ejs-grid>
+                  </mat-card-content>
+
+              </mat-card>
+          </div> -->

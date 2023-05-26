@@ -1,0 +1,141 @@
+<div>
+    <div>
+        <mat-toolbar color="primary">
+            <img width="100px" height="55px" src="https://media.licdn.com/dms/image/C560BAQE9V7vr9DeXQw/company-logo_200_200/0/1519911954826?e=2147483647&v=beta&t=dgzrRotfO3SXu7_oBAspp2hk87NRkx9Sy50JgkbsKjg">
+            <h5 style="padding-left:35%;">TEST BENCH SOFTWARE</h5>
+        </mat-toolbar>
+    </div>
+</div>
+<div>
+    <mat-card>
+        <div class="row">
+            <div class="col-5">
+                <div class="row pt-2" style="align-items: center;">
+                    <div class="col-3">
+                        <h3 style="    width: max-content;
+                height: fit-content;
+                margin: 0;">PRODUCT TYPE :</h3>
+
+                    </div>
+                    <div class="col-7">
+                        <ejs-dropdownlist #dropProduct [dataSource]='datasource' cssClass="e-outline" placeholder="dropdown" (change)="selectHandler($event.value)" floatLableType="Always" [fields]="productFields"></ejs-dropdownlist>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row pt-2" style="align-items: center;">
+                    <!-- <ng-template #template let-data> -->
+                    <button class="btn btn-primary btn-sm" (click)="openDialog()">Create Component</button>
+
+                    <!-- </ng-template> -->
+
+                </div>
+            </div>
+
+        </div>
+    </mat-card>
+    <mat-card>
+        <div>
+            <ejs-grid [dataSource]='dropProductData' allowPaging='true' #grid [pageSettings]='' (rowSelected)='rowSelected($event)' [rowHeight]='30'>
+
+                <e-columns>
+                    <!-- <e-column *ngFor="let i of headerD1" field={{i.Column_name}} headerText={{i.Column_name|uppercase}} editType='textbox' width="150"></e-column> -->
+                    <e-column field="id" headerText="ID" editType='textbox' width="150"></e-column>
+                    <e-column field="view_name" headerText="View Name" editType='textbox' width="150"></e-column>
+                    <e-column field="component_name" headerText="Component Name" editType='textbox' width="150"></e-column>
+                    <e-column field="mastertable" headerText="Master Table" editType='textbox' width="150"></e-column>
+                    <e-column field="ismandatory" headerText="Mandatory" editType='textbox' width="150"></e-column>
+                    <e-column field="isdisable" headerText="Disable" editType='textbox' width="150"></e-column>
+                    <e-column field="row_no" headerText="Row" editType='textbox' width="150"></e-column>
+                    <e-column field="column_no" headerText="Column" editType='textbox' width="150"></e-column>
+                    <e-column field="outputfld" headerText="OutputField" editType='textbox' width="150"></e-column>
+                    <!-- <e-column field="is" headerText="Name" editType='textbox' width="150"></e-column> -->
+
+                    <e-column headerText="ACTION" width="150">
+                        <ng-template #template let-data>
+
+                            <button class="del-icon" mat-icon-button mat-sm-button (click)="openDialog3()"><mat-icon class="icon-display">delete</mat-icon></button>
+
+                        </ng-template>
+
+                    </e-column>
+
+                </e-columns>
+            </ejs-grid>
+        </div>
+
+    </mat-card>
+
+
+
+
+
+    <ng-template #addTable>
+        <div mat-card-content>
+            <div class="dialog-title">
+                <h1>Edit Table</h1>
+                <button mat-icon-button mat-dialog-close>
+            <mat-icon class="icon-display">close</mat-icon>
+          </button>
+            </div>
+            <label for="inputtable">Component type</label><br>
+
+            <ejs-dropdownlist #dropComponentType cssClass="e-outline" placeholder="dropdown" floatLableType="Always" [dataSource]='ComponentTypes' [fields]="" (change)="selectedComType($event)"></ejs-dropdownlist>
+
+            <label for="inputtable">Component Name</label><br>
+            <ejs-textbox #textboxComponentName name="text_input" cssClass="e-outline" #inputValue placeholder="enter column name & data type" floatLableType="Always" class="e-input" type="text"></ejs-textbox>
+
+            <label for="inputtable">Master Table</label><br>
+            <ejs-dropdownlist #dropMaster cssClass="e-outline" placeholder="dropdown" floatLableType="Always" [dataSource]='DropMasterSource' [fields]="masterField"></ejs-dropdownlist>
+
+
+            <!-- <label for="inputtable">Has Master</label><br>
+            <ejs-dropdownlist #hasMaster value="value" cssClass="e-outline" placeholder="dropdown" floatLableType="Always" [dataSource]='hasMasterValue' [fields]="MandatoryFields"></ejs-dropdownlist> -->
+
+
+            <label for="inputtable">Mandatory</label><br>
+            <ejs-dropdownlist #dropMandatory cssClass="e-outline" placeholder="dropdown" floatLableType="Always" [dataSource]='DropMandatorySource' [fields]="MandatoryFields"></ejs-dropdownlist>
+
+            <label for="inputtable">Is Disable</label><br>
+            <ejs-dropdownlist #DropDisable cssClass="e-outline" placeholder="dropdown" floatLableType="Always" [dataSource]='DropDisableSource' [fields]="MandatoryFields"></ejs-dropdownlist>
+
+            <label for="inputtable">Row No</label><br>
+            <ejs-textbox #numerictextboxRow name="text_input" cssClass="e-outline" #inputValue placeholder="NumericTextbox" floatLableType="Always" class="e-input" type="Number"></ejs-textbox>
+
+
+            <label for="inputtable">Column No</label><br>
+            <!-- <ejs-textbox #numerictextboxCol name="text_input" cssClass="e-outline" #inputValue placeholder="NumericTextbox" floatLableType="Always" class="e-input" type="Number"></ejs-textbox> -->
+            <ejs-dropdownlist #numerictextboxCol cssClass="e-outline" placeholder="dropdown" floatLableType="Always" [dataSource]='DropColumnNumber' [fields]=""></ejs-dropdownlist>
+
+            <label for="inputtable">Output Field</label><br>
+            <ejs-dropdownlist #dropOutputField cssClass="e-outline" placeholder="dropdown" floatLableType="Always" [dataSource]='outputFieldDrop' [fields]="MandatoryFields"></ejs-dropdownlist>
+        </div>
+        <div mat-dialog-actions style="align-items: center;">
+            <button class="btn btn-primary" (click)="OnCreateComponent()" mat-dialog-close>Save</button>
+        </div>
+    </ng-template>
+
+
+
+    <ng-template #addTable1>
+        <div mat-card-content>
+
+            <div class="dialog-title">
+                <h1>Delete Table</h1>
+                <button mat-icon-button mat-dialog-close>
+        <mat-icon class="icon-display">close</mat-icon>
+      </button>
+
+            </div>
+            <h3 style="color: Red;">ARE YOU SURE WANT TO DELETE THE TABLE?</h3>
+        </div>
+
+        <div mat-dialog-actions>
+
+            <button (click)="onDelete()" mat-raised-button color="warn" mat-dialog-close>Delete</button>
+            <button color="primary" mat-raised-button mat-dialog-close>
+            NO
+           </button>
+        </div>
+    </ng-template>

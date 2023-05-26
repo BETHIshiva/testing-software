@@ -1,0 +1,59 @@
+.dialog-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-display {
+    /* transform: scale(0.8); */
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+}
+
+.edit-icon,
+.del-icon {
+    margin-right: 10px;
+    background-color: transparent;
+}
+
+button {
+    border-style: none;
+}
+
+.e-grid .e-columnheader .e-headercell {
+    color: black;
+    font-weight: bold;
+    /* font-size: 25px; */
+}
+
+.e-grid .e-rowcell {
+    font-size: 13px;
+}
+
+
+/* // Set font size and bold for headertext in Grid  */
+
+.e-grid .e-headercelldiv {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* //Setting padding for Grid toolbar  */
+
+.e-grid .e-toolbar .e-toolbar-items .e-toolbar-item .e-tbar-btn.e-btn {
+    padding: 0 0.5px;
+}
+
+.e-grid .e-toolbar .e-toolbar-items .e-toolbar-item:not(.e-separator) {
+    padding: 0.5px;
+}
+
+
+/* //Setting padding for Grid filterbar  */
+
+.e-grid .e-filterbarcell,
+.e-grid .e-filterbarcelldisabled {
+    padding: 0 5px;
+}

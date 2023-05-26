@@ -1,0 +1,53 @@
+<div>
+    <div>
+        <mat-toolbar color="primary">
+            <img width="100px" height="55px" src="https://media.licdn.com/dms/image/C560BAQE9V7vr9DeXQw/company-logo_200_200/0/1519911954826?e=2147483647&v=beta&t=dgzrRotfO3SXu7_oBAspp2hk87NRkx9Sy50JgkbsKjg">
+            <h5 style="padding-left:35%;">TEST BENCH SOFTWARE</h5>
+        </mat-toolbar>
+    </div>
+</div>
+<div>
+    <mat-card>
+        <div class="row">
+            <div class="col-5">
+                <div class="row pt-2" style="align-items: center;">
+                    <div class="col-3">
+                        <h3 style="    width: max-content;
+            height: fit-content;
+            margin: 0;">PRODUCT TYPE :</h3>
+
+                    </div>
+                    <div class="col-7">
+                        <ejs-dropdownlist #dropProduct [dataSource]='datasource' (change)="selectHandler($event.value)" cssClass="e-outline" placeholder="dropdown" floatLableType="Always" [fields]="productFields"></ejs-dropdownlist>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-4">
+                <div>
+
+
+                    <ejs-daterangepicker #datePicker placeholder='Select a range' [startDate]='' [endDate]=''></ejs-daterangepicker>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row pt-2" style="align-items: center;">
+                    <!-- <ng-template #template let-data> -->
+                    <button class="btn btn-primary btn-sm" (click)="OnShowGrid()">SHOW</button>
+
+                    <!-- </ng-template> -->
+
+                </div>
+            </div>
+
+        </div>
+    </mat-card>
+
+    <mat-card>
+        <ejs-grid [dataSource]='datasourcegrid' #GRID [editSettings]='' [toolbar]='' height='273px'>
+            <e-columns>
+                <e-column *ngFor="let item of datasourceGridCol" field={{item.Column_name}} headerText={{item.Column_name}} editType='textbox' width="150"></e-column>
+
+            </e-columns>
+        </ejs-grid>
+    </mat-card>

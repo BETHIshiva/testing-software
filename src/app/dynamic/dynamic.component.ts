@@ -1,3 +1,4 @@
+
 import { Component, ElementRef, OnInit ,ViewChild,VERSION, ViewChildren, QueryList } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -9,15 +10,15 @@ import { FormArray, FormBuilder, FormControl,FormGroup, Validators } from '@angu
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-dynamic',
+  templateUrl: './dynamic.component.html',
+  styleUrls: ['./dynamic.component.css']
 })
-export class AppComponent  implements OnInit{
+export class DynamicComponent  implements OnInit{
   [x: string]: any;
   public dropdata:any = [];
-  public fields : any={'value':'id','text':'value'};
-  public productFields:any={'value':'id','text':'product_name'}
+  public fields : any={'value':'id','text':'name'};
+  public productFields:any={'value':'id','text':'name'}
 
   inputValue!:any;
   selectedDropValue!:any;
@@ -65,6 +66,7 @@ export class AppComponent  implements OnInit{
     })
     this.OnDisplay();
     this.onSelect();
+    console.log('test')
   }
   OnSelectComp(){
     console.log(this.dropProduct.value);
@@ -99,7 +101,7 @@ export class AppComponent  implements OnInit{
   this.demoservice.SelectProduct().subscribe(
     (data:any)=>{
       this.datasource=data;
-      // console.log(data)
+      console.log(data)
     }
   )
  }
@@ -228,15 +230,15 @@ console.log(this.textboxArray);
 
   this.arr=[];
   this.arr = [...this.textboxArray,...this.NumericArray,...this.dropArray];
-    // console.log('arr')
-    // console.log(this.arr);
+    console.log('arr')
+    console.log(this.arr);
     let data={
       'data':this.arr
     }
     console.log(data);
     this.demoservice.onInsert(data).subscribe(
       res=>{
-        // console.log(res)
+        console.log(res)
 
       }
     )
@@ -249,18 +251,15 @@ console.log(this.textboxArray);
   }
 public testArray:any=[]
   onAdd1(data:any,id:any){
-    // console.log(id)
-
-
-
+    console.log(id)
         this.demoservice.onGetTexbox({'id':id }).subscribe(
           data=>{
             console.log(data)
             this.demoservice.onInsertBox({'id':id }).subscribe(
               (res:any)=>{
-                // console.log(res);
+                console.log(res);
                 this.testArray=res
-                // console.log(this.startArray);
+                console.log(this.startArray);
                 let index = -1;
                 let x=-1;
                 for(let i=0;i<=this.startArray.length;i++){
@@ -270,7 +269,7 @@ public testArray:any=[]
                     // if (this.dynamicData[i]?.['component_name'] === ) {
                         for (let k = 0; k < this.testArray.length; k++) {
                           if (this.testArray[k]['txtboxid'] == this.startArray[i]?.['id']) {
-                            // console.log(index);
+                            console.log(index);
                             this.textbox.toArray()[index].value=this.testArray[k]['textboxcomp']
 
 
@@ -282,7 +281,7 @@ public testArray:any=[]
                     ++x;
                     for (let j = 0; j < this.testArray.length; j++) {
                       if (this.testArray[j]['txtboxid'] == this.startArray[i]?.['id']) {
-                        // console.log(x);
+                        console.log(x);
                         // console.log(this.testArray[k]['textboxcomp']);
 
                         this.numeric_Textbox.toArray()[x].value=this.testArray[j]['textboxcomp']
@@ -300,45 +299,7 @@ public testArray:any=[]
 
         )
 
-    // else if(data=='NO-Load@290') {
 
-    //   console.log('NO-Load@290');
-    //   this.demoservice.onGetTexbox({'id':id }).subscribe(
-    //     data=>{
-    //       console.log(data)
-    //       this.demoservice.onInsertBox({'id':id }).subscribe(
-    //         (res:any)=>{
-    //           console.log(res);
-    //           this.testArray=res
-    //           console.log(this.startArray);
-    //           let index = -1;
-    //           for(let i=0;i<=this.startArray.length;i++){
-
-    //             if(this.startArray[i]?.['component_name']=='Textbox' || this.startArray[i]?.['component_name']=='NumericTextbox'){
-    //               ++index;
-    //               // if (this.dynamicData[i]?.['component_name'] === ) {
-    //                   for (let k = 0; k < this.testArray.length; k++) {
-    //                     if (this.testArray[k]['txtboxid'] == this.startArray[i]?.['id']) {
-    //                       console.log(index);
-    //                       this.textbox.toArray()[index].value=this.testArray[k]['textboxcomp']
-
-
-    //                     }
-
-    //                   }
-    //             }
-    //           }
-
-    //         }
-    //       )
-    //     }
-
-    //   )
-
-
-    //   // this.onAdd2(id)
-
-    // }
 
   }
   // onAdd2(id:any){
@@ -352,7 +313,7 @@ public testArray:any=[]
   OnDisplay(){
     this.demoservice.onSelectGrid().subscribe(
       (re:any)=>{
-        // console.log(re)
+        console.log(re)
         this.displayArray=re
       }
     )

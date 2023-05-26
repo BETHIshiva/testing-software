@@ -1,0 +1,135 @@
+<div>
+    <div>
+        <mat-toolbar color="primary">
+            <img width="100px" height="55px" src="https://media.licdn.com/dms/image/C560BAQE9V7vr9DeXQw/company-logo_200_200/0/1519911954826?e=2147483647&v=beta&t=dgzrRotfO3SXu7_oBAspp2hk87NRkx9Sy50JgkbsKjg">
+            <h5 style="padding-left:35%;">TEST BENCH SOFTWARE</h5>
+        </mat-toolbar>
+    </div>
+</div>
+<div>
+    <mat-card>
+        <div class="row">
+            <div class="col-5">
+                <div class="row pt-2" style="align-items: center;">
+                    <div class="col-3">
+                        <h3 style="    width: max-content;
+              height: fit-content;
+              margin: 0;">PRODUCT TYPE :</h3>
+
+                    </div>
+                    <div class="col-7">
+                        <ejs-dropdownlist #dropProduct [dataSource]='datasource' (change)="selectHandler($event.value)" cssClass="e-outline" placeholder="dropdown" floatLableType="Always" [fields]="productFields"></ejs-dropdownlist>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row pt-2" style="align-items: center;">
+                    <!-- <ng-template #template let-data> -->
+                    <button class="btn btn-primary btn-sm" (click)="openDialog()">Create Link</button>
+
+                    <!-- </ng-template> -->
+
+                </div>
+            </div>
+
+        </div>
+    </mat-card>
+    <mat-card>
+        <div>
+            <ejs-grid [dataSource]='datasource1' allowPaging='true' #grid [pageSettings]='' (rowSelected)='rowSelected($event)' [rowHeight]='30'>
+
+                <e-columns>
+                    <!-- <e-column *ngFor="let i of headerD1" field={{i.Column_name}} headerText={{i.Column_name|uppercase}} editType='textbox' width="150"></e-column> -->
+                    <e-column field="component_id" headerText="Button Name" editType="textbox" width="150"></e-column>
+                    <e-column field="txtboxid" headerText="textbox name" editType="textbox" width="150"></e-column>
+                    <e-column field="smg_ip" headerText="IP Adress" editType="textbox" width="150"></e-column>
+                    <!-- <e-column field="txtboxid" headerText="textbox name" editType="textbox" width="150"></e-column> -->
+                    <e-column field="smg_port" headerText="SMG Port" editType='textbox' width="150"></e-column>
+                    <e-column field="address" headerText="Polling Adress" editType="textbox" width="150"></e-column>
+                    <e-column field="mf_value" headerText="MF Value" editType="textbox" width="150"></e-column>
+                    <e-column headerText="ACTION" width="150">
+                        <ng-template #template let-data>
+
+                            <button class="del-icon" mat-icon-button mat-sm-button><mat-icon class="icon-display" (click)="openDialog2()">delete</mat-icon></button>
+
+                        </ng-template>
+
+                    </e-column>
+
+                </e-columns>
+            </ejs-grid>
+        </div>
+
+    </mat-card>
+
+
+
+
+
+
+
+
+    <ng-template #addTable1>
+        <div mat-card-content>
+
+            <div class="dialog-title">
+                <h1>Delete Table</h1>
+                <button mat-icon-button mat-dialog-close>
+      <mat-icon class="icon-display">close</mat-icon>
+    </button>
+
+            </div>
+            <h3 style="color: Red;">ARE YOU SURE WANT TO DELETE THE TABLE?</h3>
+        </div>
+
+        <div mat-dialog-actions>
+
+            <button mat-raised-button color="warn" (click)="onDelete()" mat-dialog-close>Delete</button>
+            <button color="primary" mat-raised-button mat-dialog-close>
+          NO
+         </button>
+        </div>
+    </ng-template>
+
+
+
+
+
+    <ng-template #addTable>
+        <div mat-card-content>
+
+            <div class="dialog-title">
+                <h1>Add Components</h1>
+                <button mat-icon-button mat-dialog-close>
+    <mat-icon class="icon-display">close</mat-icon>
+  </button>
+
+            </div>
+            <label for="inputtable">Button Name</label><br>
+
+            <ejs-dropdownlist #dropComponentButtonName cssClass="e-outline" [dataSource]='dropValueButton' placeholder="dropdown" floatLableType="Always" [fields]="MandatoryFields"></ejs-dropdownlist>
+
+            <label for="inputtable">Textbox Name</label><br>
+            <ejs-dropdownlist #dropTextboxName value="value" cssClass="e-outline" [dataSource]="DropdownTextboxName" placeholder="dropdown" [fields]="FieldsText" floatLableType="Always"></ejs-dropdownlist>
+
+            <label for="inputtable">SMG IP</label><br>
+            <ejs-textbox #textboxComponentName name="text_input" cssClass="e-outline" placeholder="enter column name & data type" floatLableType="Always" class="e-input" type="text"></ejs-textbox>
+
+            <label for="inputtable">SMG Port</label><br>
+            <ejs-textbox #numerictextboxSMG name="text_input" cssClass="e-outline" placeholder="NumericTextbox" floatLableType="Always" class="e-input" type="Number"></ejs-textbox>
+
+            <label for="inputtable">Polling Address</label><br>
+            <ejs-textbox #numerictextboxPoll name="text_input" cssClass="e-outline" placeholder="NumericTextbox" floatLableType="Always" class="e-input" type="Number"></ejs-textbox>
+
+            <label for="inputtable">MF Value</label><br>
+            <ejs-textbox #numerictextboxMF name="text_input" cssClass="e-outline" placeholder="NumericTextbox" floatLableType="Always" class="e-input" type="Number"></ejs-textbox>
+
+            <div mat-dialog-actions style="align-items: center;">
+                <button class="btn btn-primary" mat-dialog-close (click)="onInsertVAlues()">Save</button>
+            </div>
+
+        </div>
+
+
+    </ng-template>

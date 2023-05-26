@@ -4,33 +4,33 @@
 
 
 /* .dbutton {
-    width: 10%;
-    justify-content: center;
-    text-align: center;
+  width: 10%;
+  justify-content: center;
+  text-align: center;
 } */
 
 
 /* h1 {
-    position: relative;
-    padding: 0;
-    margin: 0;
-    font-family: "Raleway", sans-serif;
-    font-weight: 300;
-    font-size: 40px;
-    color: #080808;
-    -webkit-transition: all 0.4s ease 0s;
-    -o-transition: all 0.4s ease 0s;
-    transition: all 0.4s ease 0s;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  font-size: 40px;
+  color: #080808;
+  -webkit-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
 }
 
 .five h1 {
-    text-align: center;
-    font-size: 22px;
-    font-weight: 700;
-    color: #202020;
-    text-transform: uppercase;
-    word-spacing: 1px;
-    letter-spacing: 2px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #202020;
+  text-transform: uppercase;
+  word-spacing: 1px;
+  letter-spacing: 2px;
 } */
 
 h1 {
@@ -151,10 +151,10 @@ h1 {
     background-image: linear-gradient(to top, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);
     /* background-color: #e980c6; */
     /* background-image: linear-gradient(to right bottom, #c7d4aa, #c1da8e, #bae070, #b2e64d, #a8eb12);
-    /* background-image: linear-gradient( 95.2deg, rgba(173, 252, 234, 1) 26.8%, rgba(192, 229, 246, 1) 64%); */
+  /* background-image: linear-gradient( 95.2deg, rgba(173, 252, 234, 1) 26.8%, rgba(192, 229, 246, 1) 64%); */
     /* background: linear-gradient(#ffff, #ffffff);  */
     /* background: rgb(60, 67, 70);
-    background: linear-gradient(90deg, rgba(60, 67, 70, 1) 0%, rgba(108, 116, 117, 1) 100%); */
+  background: linear-gradient(90deg, rgba(60, 67, 70, 1) 0%, rgba(108, 116, 117, 1) 100%); */
 }
 
 .site-header {
@@ -197,7 +197,7 @@ h1 {
 
 /* ejs-textbox.input-color,
 textarea {
-    background: red;
+  background: red;
 } */
 
 .input-color {

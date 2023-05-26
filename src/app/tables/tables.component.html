@@ -1,0 +1,222 @@
+<div>
+    <div>
+        <mat-toolbar color="primary">
+
+            <img width="100px" height="55px" src="https://media.licdn.com/dms/image/C560BAQE9V7vr9DeXQw/company-logo_200_200/0/1519911954826?e=2147483647&v=beta&t=dgzrRotfO3SXu7_oBAspp2hk87NRkx9Sy50JgkbsKjg">
+            <h5 style="padding-left:35%;">TEST BENCH SOFTWARE</h5>
+
+
+
+        </mat-toolbar>
+    </div>
+</div>
+
+<div>
+    <div class="row">
+        <div class="col-8">
+            <h1>Tables :</h1>
+        </div>
+        <div class="col-3">
+            <div class="row pt-2" style="align-items: center;">
+
+                <button class="btn btn-primary btn-sm" (click)="openDialog()">Create Table</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <ejs-grid [dataSource]='datasource' allowPaging='true' #grid (rowSelected)='rowSelected($event)' [pageSettings]='pageSettings' [rowHeight]='30'>
+            <e-columns>
+                <e-column field='Table' headerText='TABLE NAME' width=150></e-column>
+                <e-column field='Coloumns' headerText='COLUMN COUNT' width=150></e-column>
+                <e-column headerText="ACTION" width="150">
+                    <ng-template #template let-data>
+                        <button class="edit-icon" mat-icon-button mat-sm-button (click)="openDialog2()"><mat-icon class="icon-display">edit</mat-icon></button>
+
+                        <button class="del-icon" mat-icon-button mat-sm-button (click)="openDialog3()"><mat-icon class="icon-display">delete</mat-icon></button>
+
+                    </ng-template>
+
+                </e-column>
+            </e-columns>
+        </ejs-grid>
+    </div>
+</div>
+<div>
+    <p></p>
+    <p></p>
+</div>
+<div>
+    <div class="row">
+        <div class="col-8">
+            <h1>Columns for {{this.data1}}</h1>
+        </div>
+        <div class="col-3">
+            <div class="row pt-2" style="align-items: center;">
+
+                <button class="btn btn-primary btn-sm" (click)="openDialog1()">Create Column</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <ejs-grid [dataSource]='datasource1' #grid1 (rowSelected)='rowSelected1($event)' [rowHeight]='30'>
+            <e-columns>
+                <e-column field='COLUMN_NAME' headerText='Coloumn Name' width=90></e-column>
+                <e-column field='DATA_TYPE' headerText='Data Type' width=90></e-column>
+                <e-column headerText="Action" width="150">
+                    <ng-template #template let-data>
+                        <button class="edit-icon" mat-icon-button mat-sm-button (click)="openDialog4($event)"><mat-icon class="icon-display">edit</mat-icon></button>
+
+                        <button class="del-icon" mat-icon-button mat-sm-button (click)="openDialog5()"><mat-icon class="icon-display">delete</mat-icon></button>
+
+                    </ng-template>
+
+                </e-column>
+            </e-columns>
+        </ejs-grid>
+    </div>
+</div>
+
+
+<ng-template #addTable>
+    <div mat-dialog-content>
+        <div class="dialog-title">
+            <h1>Create Table</h1>
+
+            <!-- <button mat-icon-button aria-label="close dialog" mat-dialog-close>
+            <mat-icon >close</mat-icon>
+        </button> -->
+            <button mat-icon-button mat-dialog-close>
+          <mat-icon class="icon-display">close</mat-icon>
+        </button>
+
+        </div>
+
+
+
+
+        <label for="inputtable">Table Name</label><br>
+        <ejs-textbox #textbox name="text_input" cssClass="e-outline" #inputValue placeholder="enter table name" floatLableType="Always" class="e-input" type="text"></ejs-textbox>
+        <div *ngIf="isTable==true" class="text-danger">
+            <small>Table Already exists*</small>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button (click)="onCreateTable()" class="btn btn-primary">Save</button>
+    </div>
+</ng-template>
+
+
+
+
+
+<ng-template #addTable1>
+    <div mat-dialog-content>
+        <div class="dialog-title">
+            <h1>Create columns</h1>
+            <button mat-icon-button mat-dialog-close>
+              <mat-icon class="icon-display">close</mat-icon>
+            </button>
+        </div>
+
+        <label for="inputtable">columns Name</label><br>
+        <ejs-textbox #textbox1 name="text_input" cssClass="e-outline" #inputValue placeholder="enter column name & data type" floatLableType="Always" class="e-input" type="text"></ejs-textbox>
+        <div *ngIf="isTable1==true" class="text-danger">
+            <small>Column Already exists*</small>
+        </div>
+        <label for="dropdown">Choose The Data type :</label>
+        <ejs-dropdownlist #dropdown cssClass="e-outline" placeholder="dropdown" floatLableType="Always" [dataSource]='SQLDATATYPES' [fields]=""></ejs-dropdownlist>
+
+    </div>
+    <div mat-dialog-actions>
+        <button (click)="onCreateColoumn()" class="btn btn-primary">Save</button>
+    </div>
+</ng-template>
+
+
+<ng-template #addTable2>
+    <div mat-card-content>
+
+        <div class="dialog-title">
+            <h1>Edit Table</h1>
+            <button mat-icon-button mat-dialog-close>
+        <mat-icon class="icon-display">close</mat-icon>
+      </button>
+        </div>
+        <label for="inputtable">Table Name</label><br>
+        <ejs-textbox #textbox2 name="text_input" cssClass="e-outline" placeholder="re enter table name" floatLableType="Always" class="e-input" type="text"></ejs-textbox>
+    </div>
+    <div mat-dialog-actions>
+        <button (click)="onEditTable()" class="btn btn-primary" mat-dialog-close>Save</button>
+    </div>
+</ng-template>
+
+
+<ng-template #addTable3>
+    <div mat-card-content>
+
+        <div class="dialog-title">
+            <h1>Delete Table</h1>
+            <button mat-icon-button mat-dialog-close>
+      <mat-icon class="icon-display">close</mat-icon>
+    </button>
+
+        </div>
+        <h3 style="color: Red;">ARE YOU SURE WANT TO DELETE THE TABLE?</h3>
+    </div>
+
+    <div mat-dialog-actions>
+
+        <button (click)="onDelete()" mat-raised-button color="warn" mat-dialog-close>Delete</button>
+        <button color="primary" mat-raised-button mat-dialog-close>
+          NO
+         </button>
+    </div>
+</ng-template>
+
+
+
+
+<ng-template #addTable4>
+    <div mat-card-content>
+
+        <div class="dialog-title">
+            <h1>Edit Column</h1>
+            <button mat-icon-button mat-dialog-close>
+      <mat-icon class="icon-display">close</mat-icon>
+    </button>
+        </div>
+        <label for="inputtable">Coloumn Name</label><br>
+        <ejs-textbox #textbox3 name="text_input" cssClass="e-outline" placeholder="re enter column name" floatLableType="Always" class="e-input" type="text"></ejs-textbox>
+        <label for="dropdown">Choose The Data type :</label>
+        <ejs-dropdownlist #dropdown1 cssClass="e-outline" placeholder="dropdown" floatLableType="Always" [dataSource]='SQLDATATYPES' [fields]=""></ejs-dropdownlist>
+
+    </div>
+    <div mat-dialog-actions>
+        <button class="btn btn-primary" (click)="onColoumnEdit()" mat-dialog-close>Save</button>
+    </div>
+</ng-template>
+
+
+
+
+<ng-template #addTable5>
+    <div mat-card-content>
+
+        <div class="dialog-title">
+            <h1>Delete Column</h1>
+            <button mat-icon-button mat-dialog-close>
+    <mat-icon class="icon-display">close</mat-icon>
+  </button>
+
+        </div>
+        <h3 style="color: Red;">ARE YOU SURE WANT TO DELETE THE COLUMN?</h3>
+    </div>
+
+    <div mat-dialog-actions>
+
+        <button (click)="onDeleteColumn()" mat-raised-button color="warn" mat-dialog-close>Delete</button>
+        <button color="primary" mat-raised-button mat-dialog-close>
+          NO
+         </button>
+    </div>
+</ng-template>
